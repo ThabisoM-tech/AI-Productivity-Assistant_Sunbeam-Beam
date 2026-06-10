@@ -48,26 +48,50 @@ function ChatPage() {
     }
   }
 
+  const titleNode = (
+    <div className="space-y-1">
+      <span className="block text-3xl font-extrabold tracking-tight sm:text-4xl">
+        Ready to make today feel lighter?
+      </span>
+      <span className="block text-lg font-medium text-primary sm:text-xl">
+        Your work bestie is here. Let’s do this.
+      </span>
+    </div>
+  );
+
   return (
     <PageShell
-      title="Hey 👋 What can I help you with?"
+      title={titleNode}
       subtitle="Ask me anything work-related — drafting, planning, brainstorming, you name it."
     >
       <Card className="flex h-[calc(100vh-220px)] min-h-[420px] flex-col overflow-hidden">
         <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto p-4 sm:p-6">
           {messages.length === 0 && !loading && (
-            <div className="grid h-full place-items-center text-center text-muted-foreground">
+            <div className="grid h-full place-items-center text-center">
               <div>
-                <Sparkles className="mx-auto mb-3 h-8 w-8 text-primary" />
-                <p className="text-sm">No messages yet. Drop a prompt below to get started.</p>
-                <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs">
-                  {["Draft a follow-up email", "Summarize my week", "Plan my Monday"].map((s) => (
+                <div className="glow-pulse mb-5 inline-flex">
+                  <Sparkles className="h-14 w-14 text-primary" />
+                </div>
+                <p className="text-base font-medium text-foreground">
+                  No messages yet. Drop a prompt below to get started.
+                </p>
+                <div className="mt-5 flex flex-wrap justify-center gap-2 text-xs sm:text-sm">
+                  {[
+                    { label: "Draft a follow-up email", icon: "✉️" },
+                    { label: "Summarize my week", icon: "📊" },
+                    { label: "Plan my Monday", icon: "🗓️" },
+                  ].map(({ label, icon }) => (
                     <button
-                      key={s}
-                      onClick={() => setInput(s)}
-                      className="rounded-full border border-border bg-secondary px-3 py-1.5 hover:bg-accent"
+                      key={label}
+                      onClick={() => setInput(label)}
+                      className={cn(
+                        "group flex items-center gap-2 rounded-full border border-border/70 px-4 py-2",
+                        "bg-card/60 text-muted-foreground backdrop-blur-sm transition-all",
+                        "hover:border-primary/40 hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_18px_-4px_var(--color-primary)]"
+                      )}
                     >
-                      {s}
+                      <span className="opacity-70 transition-opacity group-hover:opacity-100">{icon}</span>
+                      <span>{label}</span>
                     </button>
                   ))}
                 </div>

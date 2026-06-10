@@ -5,8 +5,8 @@ export function PageShell({
   subtitle,
   children,
 }: {
-  title: string;
-  subtitle?: string;
+  title: ReactNode;
+  subtitle?: ReactNode;
   children: ReactNode;
 }) {
   return (
@@ -16,11 +16,12 @@ export function PageShell({
 
       <div className="relative">
         <header className="mb-6 sm:mb-8">
-          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{title}</h1>
-          {subtitle && <p className="mt-1 text-sm text-muted-foreground sm:text-base">{subtitle}</p>}
+          <div className="text-2xl font-bold tracking-tight sm:text-3xl">{title}</div>
+          {subtitle && <div className="mt-2 text-sm text-muted-foreground sm:text-base">{subtitle}</div>}
         </header>
         {children}
       </div>
     </div>
   );
 }
+

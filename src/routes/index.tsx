@@ -50,12 +50,12 @@ function ChatPage() {
   }
 
   const titleNode = (
-    <div className="space-y-1">
-      <span className="block text-3xl font-extrabold tracking-tight sm:text-4xl">
-        Ready to make today feel lighter?
+    <div className="space-y-2">
+      <span className="block font-serif text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
+        Let’s clear the deck today.
       </span>
-      <span className="block text-lg font-medium text-primary sm:text-xl">
-        Your work bestie is here. Let’s do this.
+      <span className="block font-serif text-2xl font-medium italic text-muted-foreground sm:text-3xl">
+        What are we knocking out first?
       </span>
     </div>
   );
@@ -63,20 +63,25 @@ function ChatPage() {
   return (
     <PageShell
       title={titleNode}
-      subtitle="Ask me anything work-related — drafting, planning, brainstorming, you name it."
+      subtitle="Drop your drafts, notes, or tasks here — we’ll move them forward together."
     >
-      <Card className="flex h-[calc(100vh-220px)] min-h-[420px] flex-col overflow-hidden">
+      <Card className="glass-panel subtle-gradient-border flex h-[calc(100vh-220px)] min-h-[460px] flex-col overflow-hidden bg-card/40">
         <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto p-4 sm:p-6">
           {messages.length === 0 && !loading && (
             <div className="grid h-full place-items-center text-center">
-              <div>
-                <div className="glow-pulse mb-5 inline-flex">
-                  <Sparkles className="h-14 w-14 text-primary" />
+              <div className="max-w-xl">
+                <div className="mb-7 inline-flex">
+                  <div className="vintage-icon">
+                    <CompassRose className="h-12 w-12" />
+                  </div>
                 </div>
-                <p className="text-base font-medium text-foreground">
-                  No messages yet. Drop a prompt below to get started.
+                <p className="font-serif text-xl font-semibold text-foreground sm:text-2xl">
+                  Locking in. Where should we start?
                 </p>
-                <div className="mt-5 flex flex-wrap justify-center gap-2 text-xs sm:text-sm">
+                <p className="mt-2 text-sm text-muted-foreground sm:text-base">
+                  Pick a quick-start below or type your own prompt.
+                </p>
+                <div className="mt-6 flex flex-wrap justify-center gap-2.5 text-xs sm:text-sm">
                   {[
                     { label: "Draft a follow-up email", icon: "✉️" },
                     { label: "Summarize my week", icon: "📊" },
@@ -85,14 +90,10 @@ function ChatPage() {
                     <button
                       key={label}
                       onClick={() => setInput(label)}
-                      className={cn(
-                        "group flex items-center gap-2 rounded-full border border-border/70 px-4 py-2",
-                        "bg-card/60 text-muted-foreground backdrop-blur-sm transition-all",
-                        "hover:border-primary/40 hover:bg-primary/10 hover:text-primary hover:shadow-[0_0_18px_-4px_var(--color-primary)]"
-                      )}
+                      className="chip-interactive group flex items-center gap-2 rounded-full px-4 py-2 text-foreground/80 hover:text-foreground"
                     >
-                      <span className="opacity-70 transition-opacity group-hover:opacity-100">{icon}</span>
-                      <span>{label}</span>
+                      <span className="opacity-80 transition-opacity group-hover:opacity-100">{icon}</span>
+                      <span className="font-medium">{label}</span>
                     </button>
                   ))}
                 </div>

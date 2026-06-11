@@ -91,10 +91,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap",
       },
+      { rel: "stylesheet", href: appCss },
     ],
   }),
   shellComponent: RootShell,
@@ -125,10 +128,10 @@ function RootComponent() {
       <SidebarProvider>
         <div className="flex min-h-screen w-full bg-background">
           <AppSidebar />
-          <div className="glass-panel subtle-gradient-border mr-3 mb-3 flex min-w-0 flex-1 flex-col rounded-2xl">
-            <header className="sticky top-0 z-10 flex h-12 items-center gap-2 border-b border-border bg-background/60 px-3 backdrop-blur">
+          <div className="glass-panel subtle-gradient-border mr-3 mb-3 mt-3 flex min-w-0 flex-1 flex-col rounded-2xl">
+            <header className="sticky top-0 z-10 flex h-12 items-center gap-2 border-b border-border/60 bg-background/40 px-3 backdrop-blur-md">
               <SidebarTrigger />
-              <span className="text-sm font-medium text-muted-foreground">AI Productivity Assistant</span>
+              <span className="font-serif text-sm font-semibold tracking-wide text-foreground/80">AI Productivity Assistant</span>
             </header>
             <main className="flex-1">
               <Outlet />

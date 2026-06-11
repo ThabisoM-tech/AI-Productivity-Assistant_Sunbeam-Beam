@@ -163,6 +163,13 @@
   backdrop-filter: blur(14px);
 }
 
+@utility sidebar-glass {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-right: 1px solid rgba(34, 211, 238, 0.1);
+}
+
 @utility subtle-gradient-border {
   border: 1px solid color-mix(in oklch, var(--primary) 18%, transparent);
   box-shadow:

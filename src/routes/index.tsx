@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { Send, Sparkles } from "lucide-react";
+import { Send } from "lucide-react";
 import { toast } from "sonner";
 import { chatComplete } from "@/lib/ai.functions";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Shimmer } from "@/components/shimmer";
 import { PageShell } from "@/components/page-shell";
+import { CompassRose } from "@/components/compass-rose";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({

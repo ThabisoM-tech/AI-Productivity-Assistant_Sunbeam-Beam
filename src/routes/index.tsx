@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { Send } from "lucide-react";
 import { toast } from "sonner";
@@ -10,37 +10,42 @@ import { Card } from "@/components/ui/card";
 import { Shimmer } from "@/components/shimmer";
 import { PageShell } from "@/components/page-shell";
 import { CompassRose } from "@/components/compass-rose";
+import { useChatStore } from "@/lib/chat-store";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AI Productivity Assistant — Chat" },
+      { title: "Deck — Chat" },
       { name: "description", content: "Your friendly AI co-pilot for everyday work tasks." },
     ],
   }),
   component: ChatPage,
 });
 
-type Msg = { role: "user" | "assistant"; content: string };
-
 function ChatPage() {
   const run = useServerFn(chatComplete);
-  const [messages, setMessages] = useState<Msg[]>([]);
+  const { current, currentId, newChat, setMessages } = useChatStore();
+  const messages = current?.messages ?? [];
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    if (!currentId) newChat();
+  }, [currentId, newChat]);
+
   async function send() {
     const text = input.trim();
     if (!text || loading) return;
+    const id = currentId ?? newChat();
     const next = [...messages, { role: "user" as const, content: text }];
-    setMessages(next);
+    setMessages(id, next);
     setInput("");
     setLoading(true);
     try {
       const { text: reply } = await run({ data: { messages: next } });
-      setMessages([...next, { role: "assistant", content: reply }]);
+      setMessages(id, [...next, { role: "assistant", content: reply }]);
       setTimeout(() => scrollRef.current?.scrollTo({ top: 9e6, behavior: "smooth" }), 50);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Something went sideways. Try again?");

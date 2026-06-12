@@ -14,6 +14,9 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
+import { AuthProvider, useAuth } from "@/lib/auth";
+import { ChatStoreProvider } from "@/lib/chat-store";
+import { LoginPage } from "@/components/login-page";
 
 
 function NotFoundComponent() {
@@ -81,11 +84,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Deck" },
+      { name: "description", content: "Deck — your AI work co-pilot." },
+      { name: "author", content: "Deck" },
+      { property: "og:title", content: "Deck" },
+      { property: "og:description", content: "Deck — your AI work co-pilot." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -125,22 +128,37 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SidebarProvider>
-        <div className="flex min-h-screen w-full bg-background">
-          <AppSidebar />
-          <div className="glass-panel mr-3 mb-3 mt-3 flex min-w-0 flex-1 flex-col" style={{ borderRadius: 24, border: "1px solid rgba(34, 211, 238, 0.15)" }}>
-            <header className="sticky top-0 z-10 flex h-12 items-center gap-2 border-b border-border/60 bg-background/40 px-3 backdrop-blur-md">
-              <SidebarTrigger />
-              <span className="font-serif text-sm font-semibold tracking-wide text-foreground/80">AI Productivity Assistant</span>
-            </header>
-            <main className="flex-1">
-              <Outlet />
-            </main>
-          </div>
-        </div>
-        <Toaster richColors position="top-right" />
-      </SidebarProvider>
+      <AuthProvider>
+        <ChatStoreProvider>
+          <AppGate />
+          <Toaster richColors position="top-right" />
+        </ChatStoreProvider>
+      </AuthProvider>
     </QueryClientProvider>
+  );
+}
+
+function AppGate() {
+  const { user } = useAuth();
+  if (!user) return <LoginPage />;
+  return (
+    <SidebarProvider>
+      <div className="flex h-svh w-full overflow-hidden bg-background">
+        <AppSidebar />
+        <div
+          className="glass-panel my-3 mr-3 flex min-w-0 flex-1 flex-col"
+          style={{ borderRadius: 24, border: "1px solid rgba(34, 211, 238, 0.15)" }}
+        >
+          <header className="sticky top-0 z-10 flex h-12 items-center gap-2 border-b border-border/60 bg-background/40 px-3 backdrop-blur-md">
+            <SidebarTrigger />
+            <span className="font-serif text-sm font-semibold tracking-wide text-foreground/80">Deck</span>
+          </header>
+          <main className="flex-1 overflow-y-auto">
+            <Outlet />
+          </main>
+        </div>
+      </div>
+    </SidebarProvider>
   );
 }
 

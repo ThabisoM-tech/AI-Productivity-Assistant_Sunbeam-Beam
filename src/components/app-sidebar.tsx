@@ -21,7 +21,7 @@ export function AppSidebar() {
 
   return (
     <aside
-      className="group/sidebar sidebar-glass relative z-40 flex h-svh shrink-0 flex-col overflow-hidden transition-[width] duration-300 ease-in-out data-[state=collapsed]:w-[60px] data-[state=expanded]:w-[260px]"
+      className="group/sidebar sidebar-glass relative z-40 m-3 flex h-[calc(100svh-1.5rem)] shrink-0 flex-col overflow-hidden transition-[width] duration-300 ease-in-out data-[state=collapsed]:w-[60px] data-[state=expanded]:w-[260px]"
       data-state={state}
     >
       {/* Header */}

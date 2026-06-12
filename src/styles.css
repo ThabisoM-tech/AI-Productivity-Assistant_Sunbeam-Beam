@@ -51,9 +51,9 @@
 }
 
 :root {
-  --radius: 0.875rem;
-  /* Deep matte midnight blue */
-  --background: oklch(0.18 0.035 260);
+  --radius: 1.5rem;
+  /* Deep matte midnight blue #0b1329 */
+  --background: #0b1329;
   --foreground: oklch(0.96 0.005 220);
   --card: oklch(0.235 0.03 260);
   --card-foreground: oklch(0.96 0.005 220);
@@ -129,10 +129,9 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    /* Subtle layered atmospheric background */
     background-image:
-      radial-gradient(1200px 600px at 15% -10%, oklch(0.28 0.05 220 / 0.35), transparent 60%),
-      radial-gradient(900px 500px at 110% 110%, oklch(0.25 0.06 200 / 0.25), transparent 60%);
+      radial-gradient(1200px 600px at 15% -10%, rgba(20, 184, 166, 0.06), transparent 60%),
+      radial-gradient(900px 500px at 110% 110%, rgba(34, 211, 238, 0.05), transparent 60%);
     background-attachment: fixed;
   }
 
@@ -146,28 +145,29 @@
   pointer-events: none;
   position: absolute;
   left: 50%;
-  top: 18%;
-  height: 520px;
-  width: 760px;
+  top: 30%;
+  height: 560px;
+  width: 820px;
   transform: translate(-50%, -50%);
   border-radius: 9999px;
-  background: radial-gradient(ellipse 50% 40% at 50% 50%, oklch(0.75 0.16 195 / 0.18), transparent 70%);
+  background: radial-gradient(ellipse 50% 40% at 50% 50%, #14b8a6, transparent 70%);
   filter: blur(80px);
-  opacity: 0.9;
+  opacity: 0.15;
 }
 
 @utility glass-panel {
   position: relative;
   overflow: hidden;
-  background: color-mix(in oklch, var(--background) 35%, transparent);
-  backdrop-filter: blur(14px);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
 }
 
 @utility sidebar-glass {
-  background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-right: 1px solid rgba(34, 211, 238, 0.1);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(34, 211, 238, 0.15);
+  border-radius: 24px;
 }
 
 @utility subtle-gradient-border {
@@ -178,15 +178,15 @@
 }
 
 @utility chip-interactive {
-  background: color-mix(in oklch, var(--secondary) 80%, transparent);
-  border: 1px solid color-mix(in oklch, var(--primary) 14%, transparent);
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(34, 211, 238, 0.1);
   transition: transform 200ms ease, border-color 200ms ease, background 200ms ease, box-shadow 200ms ease;
 
   &:hover {
     transform: translateY(-2px);
-    border-color: color-mix(in oklch, var(--primary) 70%, transparent);
-    background: color-mix(in oklch, var(--secondary) 95%, transparent);
-    box-shadow: 0 8px 24px -10px color-mix(in oklch, var(--primary) 60%, transparent);
+    border-color: #14b8a6;
+    background: rgba(30, 41, 59, 0.9);
+    box-shadow: 0 8px 24px -10px rgba(20, 184, 166, 0.5);
   }
 }
 

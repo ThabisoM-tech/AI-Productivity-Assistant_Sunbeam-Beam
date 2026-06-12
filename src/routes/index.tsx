@@ -52,10 +52,10 @@ function ChatPage() {
   const titleNode = (
     <div className="space-y-2">
       <span className="block font-serif text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
-        Let’s clear the deck today.
+        Locking in.
       </span>
-      <span className="block font-serif text-2xl font-medium italic text-muted-foreground sm:text-3xl">
-        What are we knocking out first?
+      <span className="block font-serif text-xl font-medium italic text-muted-foreground sm:text-2xl">
+        Drop your drafts, notes, or tasks here and let’s get it done.
       </span>
     </div>
   );

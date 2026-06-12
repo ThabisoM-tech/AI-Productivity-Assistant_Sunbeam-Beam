@@ -21,7 +21,7 @@ export function AppSidebar() {
 
   return (
     <aside
-      className="group/sidebar sidebar-glass relative z-40 flex h-svh shrink-0 flex-col overflow-hidden transition-[width] duration-300 ease-in-out data-[state=collapsed]:w-[60px] data-[state=expanded]:w-[260px]"
+      className="group/sidebar sidebar-glass relative z-40 m-3 flex h-[calc(100svh-1.5rem)] shrink-0 flex-col overflow-hidden transition-[width] duration-300 ease-in-out data-[state=collapsed]:w-[60px] data-[state=expanded]:w-[260px]"
       data-state={state}
     >
       {/* Header */}
@@ -62,9 +62,12 @@ export function AppSidebar() {
                     : "text-[#94a3b8] hover:bg-white/[0.03] hover:text-foreground"
                 } ${collapsed ? "justify-center" : ""}`}
               >
-                {/* Active indicator — glowing vertical pill */}
+                {/* Active indicator — glowing vertical pill + dot */}
                 {active && (
-                  <span className="absolute left-0 top-1/2 h-6 w-[3px] -translate-y-1/2 rounded-r-full bg-primary shadow-[0_0_10px_rgba(20,184,166,0.5)]" />
+                  <>
+                    <span className="absolute left-0 top-1/2 h-6 w-[3px] -translate-y-1/2 rounded-r-full bg-[#14b8a6] shadow-[0_0_12px_rgba(20,184,166,0.7)]" />
+                    <span className="pointer-events-none absolute left-[-3px] top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-[#14b8a6] shadow-[0_0_8px_2px_rgba(20,184,166,0.8)]" />
+                  </>
                 )}
                 <item.icon
                   className={`h-[18px] w-[18px] shrink-0 transition-colors duration-200 ${

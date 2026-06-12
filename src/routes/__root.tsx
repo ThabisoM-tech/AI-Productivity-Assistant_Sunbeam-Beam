@@ -128,7 +128,7 @@ function RootComponent() {
       <SidebarProvider>
         <div className="flex min-h-screen w-full bg-background">
           <AppSidebar />
-          <div className="glass-panel subtle-gradient-border mr-3 mb-3 mt-3 flex min-w-0 flex-1 flex-col rounded-2xl">
+          <div className="glass-panel mr-3 mb-3 mt-3 flex min-w-0 flex-1 flex-col" style={{ borderRadius: 24, border: "1px solid rgba(34, 211, 238, 0.15)" }}>
             <header className="sticky top-0 z-10 flex h-12 items-center gap-2 border-b border-border/60 bg-background/40 px-3 backdrop-blur-md">
               <SidebarTrigger />
               <span className="font-serif text-sm font-semibold tracking-wide text-foreground/80">AI Productivity Assistant</span>

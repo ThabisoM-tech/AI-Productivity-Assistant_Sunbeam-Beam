@@ -51,9 +51,9 @@
 }
 
 :root {
-  --radius: 0.875rem;
-  /* Deep matte midnight blue */
-  --background: oklch(0.18 0.035 260);
+  --radius: 1.5rem;
+  /* Deep matte midnight blue #0b1329 */
+  --background: #0b1329;
   --foreground: oklch(0.96 0.005 220);
   --card: oklch(0.235 0.03 260);
   --card-foreground: oklch(0.96 0.005 220);
